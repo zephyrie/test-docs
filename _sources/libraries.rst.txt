@@ -9,9 +9,11 @@ Software Versions
 =========== =======
 Software    Version
 =========== =======
-MONAI Core  1.0.1
-MONAI Label 0.5.2
-NVFlare     2.2.1
+MONAI Core  1.2
+MONAI Label 0.7
+NVFlare     2.3.0
+PyTorch     2.0
+CUDA        12.1.0
 =========== =======
 
 *************
@@ -43,9 +45,8 @@ algorithm to run on any federated learning platform. NVIDIA FLARE has already bu
 NVIDIA FLARE
 **************
 
-NVIDIA FLARE (NVIDIA Federated Learning Application Runtime Environment) is a domain-agnostic, open-source, extensible SDK that allows researchers and data scientists to adapt existing ML/DL workflows (PyTorch, RAPIDS, Nemo, TensorFlow) to a federated paradigm. It enables platform developers to build a secure, privacy-preserving offering for a
-distributed multi-party collaboration. Built on a componentized architecture, NVIDIA FLARE gives you the flexibility to take federated learning workloads from research and simulation to real-world production deployment.
+NVIDIA FLARE is a domain-agnostic, open-source, extensible SDK that allows researchers and data scientists to adapt existing ML/DL workflows(PyTorch, TensorFlow, Scikit-learn, XGBoost etc.) to a federated paradigm. It enables platform developers to build a secure, privacy-preserving offering for a distributed multi-party collaboration.
 
-MONAI includes the federated learning client algorithm APIs exposed as an abstract base class for defining an algorithm to run on any federated learning platform. NVIDIA FLARE has already built the integration piece with these new APIs.
+NVIDIA FLARE is built on a componentized architecture that allows you to take federated learning workloads from research and simulation to real-world production deployment.
 
 `NVIDIA FLARE Developer Page <https://developer.nvidia.com/flare>`__

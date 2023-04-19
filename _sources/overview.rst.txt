@@ -14,7 +14,7 @@ NVIDIA co-founded Project `MONAI <https://monai.io/>`__, the Medical Open Networ
 MONAI Enterprise
 ******************
 
-**MONAI Enterprise** is NVIDIA’s offering for enterprise-grade use of MONAI with an `NVIDIA AI Enterprise (NVAIE) <https://www.nvidia.com/en-us/data-center/products/ai-enterprise/>`__ 3.0 license. MONAI Enterprise on NVAIE 3.0 offers the MONAI Toolkit container, which provides enterprise developers and researchers with a secure, scalable workflow to develop medical imaging AI.
+**MONAI Enterprise** is NVIDIA’s offering for enterprise-grade use of MONAI with an `NVIDIA AI Enterprise (NVAIE) <https://www.nvidia.com/en-us/data-center/products/ai-enterprise/>`__ 4.0 license. MONAI Enterprise on NVAIE 4.0 offers the MONAI Toolkit container, which provides enterprise developers and researchers with a secure, scalable workflow to develop medical imaging AI.
 
 .. list-table:: MONAI Open-Source versus MONAI Toolkit with NVIDIA AI Enterprise
    :widths: 70 15 10
