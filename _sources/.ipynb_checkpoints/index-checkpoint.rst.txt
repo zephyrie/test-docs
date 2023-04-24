@@ -9,7 +9,7 @@ MONAI Toolkit Documentation
    :maxdepth: 3
 
    overview
-   supportmatrix
+   libraries
    requirements
    quickstart
    navigating

@@ -32,17 +32,23 @@ To run the MONAI Toolkit container with the bash shell, issue the command below 
 Changing Shared Memory Segment Size
 ************************************************
 
-`DIGITS <https://developer.nvidia.com/digits>`__ uses shared memory to share data between processes. For example, if you use Torch multiprocessing for multi-threaded data loaders, the default shared memory segment size that the container runs with may not be enough. Therefore, you should increase the shared memory size by issuing either:
+If you use Torch multiprocessing for multi-threaded data loaders, the default shared memory segment size that the container runs with may not be enough. To address this, you can increase the shared memory size by using one of the following options:
+
+1. Use the ``--ipc=host`` flag when running your container.
+
+2. Use the ``--shm-size=`` flag followed by the desired size of the shared memory segment.
+
+For example, to increase the shared memory segment size to 16GB, you can issue the following command:
 
 ::
 
-   --ipc=host
+   docker run --gpus all -it --rm --ipc=host --net=host --shm-size=16g \
+      nvcr.io/nvidia/clara/monai-toolkit:1.1 \
+      /bin/bash
 
-or
 
-::
+By increasing the shared memory size, you can avoid issues such as "OSError: [Errno 12] Cannot allocate memory" when using multi-threaded data loaders in Torch.
 
-   --shm-size=
 
 
 ************************************************

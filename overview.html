@@ -16,7 +16,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Toolkit Libraries" href="libraries.html" />
+    <link rel="next" title="Toolkit Support Matrix" href="libraries.html" />
     <link rel="prev" title="MONAI Toolkit Documentation" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -40,7 +40,7 @@
 </div>
 <div class="section" id="monai-enterprise">
 <h2>MONAI Enterprise<a class="headerlink" href="#monai-enterprise" title="Permalink to this headline">¶</a></h2>
-<p><strong>MONAI Enterprise</strong> is NVIDIA’s offering for enterprise-grade use of MONAI with an <a class="reference external" href="https://www.nvidia.com/en-us/data-center/products/ai-enterprise/">NVIDIA AI Enterprise (NVAIE)</a> 4.0 license. MONAI Enterprise on NVAIE 4.0 offers the MONAI Toolkit container, which provides enterprise developers and researchers with a secure, scalable workflow to develop medical imaging AI.</p>
+<p><strong>MONAI Enterprise</strong> is NVIDIA’s offering for enterprise-grade use of MONAI with an <a class="reference external" href="https://www.nvidia.com/en-us/data-center/products/ai-enterprise/">NVIDIA AI Enterprise (NVAIE)</a> 3.0 license. MONAI Enterprise on NVAIE 3.0 offers the MONAI Toolkit container, which provides enterprise developers and researchers with a secure, scalable workflow to develop medical imaging AI.</p>
 <table border="1" class="colwidths-given docutils" id="id1">
 <caption><span class="caption-text">MONAI Open-Source versus MONAI Toolkit with NVIDIA AI Enterprise</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -145,6 +145,31 @@ already have a PyTorch workflow or you’re just getting started on your task.</
 <p>An IT admin’s role is to provision and configure systems to stand up the MONAI Toolkit sandbox to serve an enterprise’s data science and research teams. The toolkit provides the perfect base for those teams to get started quickly with guided tutorials and validated workflows.</p>
 </div>
 </div>
+<div class="section" id="library-overview">
+<h2>Library Overview<a class="headerlink" href="#library-overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="monai-label">
+<h3>MONAI Label<a class="headerlink" href="#monai-label" title="Permalink to this headline">¶</a></h3>
+<p>MONAI Label minimizes the need for developers and researchers to manually annotate data by providing an intelligent imaging labeling and learning SDK that can be integrated into either customized or template-based data labeling apps. MONAI Label saves developers time, helping them quickly progress to training, tuning, and validating their medical AI models within the MONAI standardized paradigm.</p>
+<p>The industry’s most popular open source viewers already have MONAI integrated: 3D Slicer, OHIF, QuPath, Digital Slide Archive, and CVAT, and it is also integrated into cloud service providers. Developers can also incorporate MONAI Label into their custom viewer using server and client APIs, which are well abstracted and documented for seamless
+integration.</p>
+<p>MONAI Label has enhanced active learning capabilities, which is a process that aims to use the least amount of data to achieve the highest possible model performance. Choosing data that will have the most significant influence on your overall model accuracy allows human annotators to focus on the annotations that will have the highest impact on the model performance. Developers can see up to a 75% reduction in training costs with active learning in MONAI Label with increased labeling and training efficiency while achieving better model performance.</p>
+<p><a class="reference external" href="https://monai.io/label.html">MONAI Label Developer Page</a></p>
+</div>
+<div class="section" id="monai-core">
+<h3>MONAI Core<a class="headerlink" href="#monai-core" title="Permalink to this headline">¶</a></h3>
+<p>MONAI Core gives developers and researchers a PyTorch-driven library for deep learning tasks that includes domain-optimized capabilities they need for developing medical imaging training workflows. Performance features such as MONAI Core’s AutoML, Smart Caching, GPU-accelerated I/O, and transforms take training from days to hours, and hours to
+minutes, helping users accelerate AI into clinical production.</p>
+<p>With Auto3D segmentation, developers can train models with 1-5 lines of code that can quickly segment regions of interest in data from 3D imaging modalities like CT and MRI, reducing training time from weeks/months to 2 days. And MONAI Core’s federated learning client algorithm APIs are exposed as an abstract base class for defining an
+algorithm to run on any federated learning platform. NVIDIA FLARE has already built the integration piece with these new APIs. And using MONAI Bundle configurations with the new federated learning APIs means developers can take any bundle and seamlessly extend them to a federated paradigm.</p>
+<p><a class="reference external" href="https://monai.io/core.html">MONAI Core Developer Page</a></p>
+</div>
+<div class="section" id="nvidia-flare">
+<h3>NVIDIA FLARE<a class="headerlink" href="#nvidia-flare" title="Permalink to this headline">¶</a></h3>
+<p>NVIDIA FLARE is a domain-agnostic, open-source, extensible SDK that allows researchers and data scientists to adapt existing ML/DL workflows(PyTorch, TensorFlow, Scikit-learn, XGBoost etc.) to a federated paradigm. It enables platform developers to build a secure, privacy-preserving offering for a distributed multi-party collaboration.</p>
+<p>NVIDIA FLARE is built on a componentized architecture that allows you to take federated learning workloads from research and simulation to real-world production deployment.</p>
+<p><a class="reference external" href="https://developer.nvidia.com/flare">NVIDIA FLARE Developer Page</a></p>
+</div>
+</div>
 </div>
 
 
@@ -175,9 +200,15 @@ already have a PyTorch workflow or you’re just getting started on your task.</
 <li class="toctree-l3"><a class="reference internal" href="#it-admin">IT Admin</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#library-overview">Library Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#monai-label">MONAI Label</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monai-core">MONAI Core</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvidia-flare">NVIDIA FLARE</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="libraries.html">Toolkit Libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="libraries.html">Toolkit Support Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="requirements.html">System Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="navigating.html">Toolkit Navigation</a></li>
@@ -189,7 +220,7 @@ already have a PyTorch workflow or you’re just getting started on your task.</
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="index.html" title="previous chapter">MONAI Toolkit Documentation</a></li>
-      <li>Next: <a href="libraries.html" title="next chapter">Toolkit Libraries</a></li>
+      <li>Next: <a href="libraries.html" title="next chapter">Toolkit Support Matrix</a></li>
   </ul></li>
 </ul>
 </div>

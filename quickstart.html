@@ -53,14 +53,18 @@
 </div>
 <div class="section" id="changing-shared-memory-segment-size">
 <h2>Changing Shared Memory Segment Size<a class="headerlink" href="#changing-shared-memory-segment-size" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://developer.nvidia.com/digits">DIGITS</a> uses shared memory to share data between processes. For example, if you use Torch multiprocessing for multi-threaded data loaders, the default shared memory segment size that the container runs with may not be enough. Therefore, you should increase the shared memory size by issuing either:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">ipc</span><span class="o">=</span><span class="n">host</span>
+<p>If you use Torch multiprocessing for multi-threaded data loaders, the default shared memory segment size that the container runs with may not be enough. To address this, you can increase the shared memory size by using one of the following options:</p>
+<ol class="arabic simple">
+<li>Use the <code class="docutils literal notranslate"><span class="pre">--ipc=host</span></code> flag when running your container.</li>
+<li>Use the <code class="docutils literal notranslate"><span class="pre">--shm-size=</span></code> flag followed by the desired size of the shared memory segment.</li>
+</ol>
+<p>For example, to increase the shared memory segment size to 16GB, you can issue the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">gpus</span> <span class="nb">all</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">rm</span> <span class="o">--</span><span class="n">ipc</span><span class="o">=</span><span class="n">host</span> <span class="o">--</span><span class="n">net</span><span class="o">=</span><span class="n">host</span> <span class="o">--</span><span class="n">shm</span><span class="o">-</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="n">g</span> \
+   <span class="n">nvcr</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">nvidia</span><span class="o">/</span><span class="n">clara</span><span class="o">/</span><span class="n">monai</span><span class="o">-</span><span class="n">toolkit</span><span class="p">:</span><span class="mf">1.1</span> \
+   <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
 </pre></div>
 </div>
-<p>or</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">shm</span><span class="o">-</span><span class="n">size</span><span class="o">=</span>
-</pre></div>
-</div>
+<p>By increasing the shared memory size, you can avoid issues such as “OSError: [Errno 12] Cannot allocate memory” when using multi-threaded data loaders in Torch.</p>
 </div>
 <div class="section" id="access-the-jupyterlab-remotely">
 <h2>Access the JupyterLab Remotely<a class="headerlink" href="#access-the-jupyterlab-remotely" title="Permalink to this headline">¶</a></h2>
@@ -119,7 +123,7 @@
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="libraries.html">Toolkit Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supportmatrix.html">Toolkit Support Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="requirements.html">System Requirements</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#running-the-monai-toolkit-jupyterlab-instance">Running the MONAI Toolkit JupyterLab Instance</a></li>

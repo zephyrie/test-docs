@@ -1,6 +1,6 @@
-###################
+########################
 Toolkit Support Matrix
-###################
+########################
 
 ********************
 Software Versions
@@ -27,7 +27,7 @@ Software Versions
 +-----------------------------------+-------------+
 
 ******************************
-Supported Pre-trained Models
+Pre-trained Models
 ******************************
 +-----------------------------------+
 |   Models                          |
@@ -65,7 +65,7 @@ Supported Pre-trained Models
 +-----------------------------------+
 
 ******************************
-Supported Viewers
+Viewers
 ******************************
 +-------------+
 |   Viewer    |
@@ -80,7 +80,7 @@ Supported Viewers
 +-------------+
 
 **************************************
-Supported Modalities and Applications
+Modalities and Applications
 **************************************
 +--------------+
 |   Modality   |
