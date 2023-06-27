@@ -1,0 +1,269 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MONAI Toolkit on NVIDIA Base Command Platform (BCP) &#8212; MONAI Toolkit Documentation 1.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Additional Resources" href="additionalresources.html" />
+    <link rel="prev" title="Performance Benchmarks" href="performance.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="monai-toolkit-on-nvidia-base-command-platform-bcp">
+<h1>MONAI Toolkit on NVIDIA Base Command Platform (BCP)<a class="headerlink" href="#monai-toolkit-on-nvidia-base-command-platform-bcp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>NVIDIA Base Command™ Platform (BCP) is a comprehensive platform designed for businesses, data scientists, and IT teams to accelerate the return on investment (ROI) for AI initiatives. BCP manages the entire lifecycle of AI development, including workload management, resource sharing, and offers a graphical user interface and command line APIs with integrated monitoring and reporting dashboards. Offered as a cloud-hosted solution, BCP continuously delivers NVIDIA’s innovations directly into your AI workflow, and works seamlessly across on-prem and cloud resources, providing a unified view of your AI development process.</p>
+<p>To utilize the NVIDIA Base Command Platform, you must have been granted access to the BCP platform and be a part of an organization or team with platform access. For information on inviting users, joining an NGC Org or Team, and signing in to your account, refer to the <a class="reference external" href="https://docs.nvidia.com/base-command-platform/user-guide/index.html">NVIDIA Base Command Platform Quickstart guide</a>.</p>
+</div>
+<div class="section" id="setting-up-your-ngc-cli">
+<h2>Setting Up Your NGC CLI<a class="headerlink" href="#setting-up-your-ngc-cli" title="Permalink to this headline">¶</a></h2>
+<p>To launch a BCP instance of the MONAI Toolkit container, we will utilize the NGC CLI.</p>
+<p>The NGC CLI (Command Line Interface) is a tool provided by NVIDIA for interacting with the NGC registry. It allows you to pull container images, models, and other resources from the NGC registry, and push your own resources to your private registry.</p>
+<p>Follow Step #5 to install the NGC CLI and generate your NGC API keys as detailed here: <cite>https://docs.nvidia.com/base-command-platform/user-guide/index.html#intro-to-ngc-base-command-cli</cite>. During the setup, ensure you select the appropriate organization and team associated with your BCP instances.</p>
+</div>
+<div class="section" id="launching-an-interactive-job-with-jupyter-lab">
+<h2>Launching an Interactive Job with Jupyter Lab<a class="headerlink" href="#launching-an-interactive-job-with-jupyter-lab" title="Permalink to this headline">¶</a></h2>
+<p>You can now launch your MONAI Toolkit instance on either a single node or multiple nodes, depending on the specifications of your BCP compute options.</p>
+</div>
+<div class="section" id="creating-a-job-to-start-a-server-using-monai-toolkit-quickstart">
+<h2>Creating a Job to Start a Server Using MONAI Toolkit - Quickstart<a class="headerlink" href="#creating-a-job-to-start-a-server-using-monai-toolkit-quickstart" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="logging-into-ngc">
+<h3>Logging into NGC<a class="headerlink" href="#logging-into-ngc" title="Permalink to this headline">¶</a></h3>
+<p>Login to NGC and select the team associated with your BCP access. Once logged in, you should see a Base Command menu on the left sidebar.</p>
+<img alt="BCP Sidebar" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_bcp_sidebar.png" />
+</div>
+<div class="section" id="accessing-the-jobs-submenu">
+<h3>Accessing the Jobs Submenu<a class="headerlink" href="#accessing-the-jobs-submenu" title="Permalink to this headline">¶</a></h3>
+<p>Click on the “Jobs” submenu:</p>
+<img alt="BCP Jobs" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_bcp_sidebar_jobs.png" />
+</div>
+<div class="section" id="creating-a-new-job">
+<h3>Creating a New Job<a class="headerlink" href="#creating-a-new-job" title="Permalink to this headline">¶</a></h3>
+<p>Next, you’ll want to click on the “Create Jobs” button at the top right.</p>
+<img alt="BCP Create Jobs" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_create_job.png" />
+</div>
+<div class="section" id="setting-node-type-and-ace">
+<h3>Setting Node Type and ACE<a class="headerlink" href="#setting-node-type-and-ace" title="Permalink to this headline">¶</a></h3>
+<p>This is where you’ll select all the information needed to launch your job. We’ll review an example job, but fill out the information with the relevant data specific to your use case.</p>
+<p>First, select “Single Node” or “Multi Node .”In this case, we’re going to use Single Node.</p>
+<p>You’ll want to select the Accelerated Computing Environment (ACE) where you’ll be running your instance.</p>
+<img alt="Create Job - Step 1" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_create_job_step1.png" />
+</div>
+<div class="section" id="choosing-compute-resources">
+<h3>Choosing Compute Resources<a class="headerlink" href="#choosing-compute-resources" title="Permalink to this headline">¶</a></h3>
+<p>Next step, select the compute you want for the node. If it’s your first time going through the MONAI Toolkit, a single node A100 should be sufficient for running most or all notebooks available.</p>
+<img alt="Create Job - Step 2" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_create_job_step2.png" />
+</div>
+<div class="section" id="selecting-datasets">
+<h3>Selecting Datasets<a class="headerlink" href="#selecting-datasets" title="Permalink to this headline">¶</a></h3>
+<p>After you’ve selected your node, you can choose any datasets you’ve previously uploaded. In this example, I’m picking the BraTS21 dataset and setting a mount point of <cite>/mount/data</cite>.</p>
+<img alt="Create Job - Step 3" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_create_job_step3.png" />
+</div>
+<div class="section" id="setting-results-mountpoint">
+<h3>Setting Results Mountpoint<a class="headerlink" href="#setting-results-mountpoint" title="Permalink to this headline">¶</a></h3>
+<p>Next, you’ll want to set the results mountpoint. This will be used to write out any files, or in our case, a log file that we’ll review for information in a following step.</p>
+<img alt="Create Job - Step 4" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_create_job_step4.png" />
+</div>
+<div class="section" id="choosing-the-container-and-exposing-ports">
+<h3>Choosing the Container and Exposing Ports<a class="headerlink" href="#choosing-the-container-and-exposing-ports" title="Permalink to this headline">¶</a></h3>
+<p>Next, you’ll want to select the Container. In this case, you’ll choose <cite>nvidia/clara/monai-toolki</cite> and use the latest tag available, in this case <cite>1.1</cite>.</p>
+<p>You’ll also want to expose the 8888 Port over HTTPS so that we can access the Jupyter Notebook instance.</p>
+<img alt="Create Job - Step 5" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_create_job_step5.png" />
+</div>
+<div class="section" id="setting-job-priority-and-order">
+<h3>Setting Job Priority and Order<a class="headerlink" href="#setting-job-priority-and-order" title="Permalink to this headline">¶</a></h3>
+<p>Then, you’ll have the option to set a Job Priority and Order. Here, we’ll leave it at the default settings of <cite>Normal</cite>.</p>
+<img alt="Create Job - Step 6" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_create_job_step6.png" />
+</div>
+<div class="section" id="naming-your-job">
+<h3>Naming Your Job<a class="headerlink" href="#naming-your-job" title="Permalink to this headline">¶</a></h3>
+<p>Next, it’s time to give your job a name. Use something that’s helpful to remind you what’s running on this instance. You’ll also see the <cite>ngc batch run</cite> command filled in with all of the fields from above.  You can run this command on the CLI that you setup earlier and run the instance; however, we’re going to launch the instance using the UI.</p>
+<img alt="Create Job - Step 7" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_create_job_step7.png" />
+</div>
+<div class="section" id="launching-your-job">
+<h3>Launching Your Job<a class="headerlink" href="#launching-your-job" title="Permalink to this headline">¶</a></h3>
+<p>Finally, you’ll be able to launch your job! At the top of the screen, you’ll find a green “Launch Job” button. Clicking this button will use all the settings you’ve entered in the form to launch an instance with those configurations.</p>
+<img alt="Create Job - Step 8" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_create_job_step8.png" />
+</div>
+<div class="section" id="job-overview">
+<h3>Job Overview<a class="headerlink" href="#job-overview" title="Permalink to this headline">¶</a></h3>
+<p>You should now see that your job is queued and can select it to see an overview. This page provides information on the available GPUs, CPU Cores, System Memory, and GPU Memory. You’ll also have a few other tabs to provide information on the instance(s) you started.</p>
+<img alt="Job Overview" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_job_overview.png" />
+<p>If you select the “Status History” tab, you’ll see your job is queued. Before we can access the server, we’ll need to wait until the job is in the “Running” status. This might take a few minutes while the server starts.</p>
+<img alt="Job Status" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_job_running.png" />
+<p>Once the server has started, our next step is to retrieve the external URL to access the Jupyter Notebooks.</p>
+</div>
+</div>
+<div class="section" id="accessing-the-external-url-for-jupyter-lab">
+<h2>Accessing the External URL for Jupyter Lab<a class="headerlink" href="#accessing-the-external-url-for-jupyter-lab" title="Permalink to this headline">¶</a></h2>
+<p>Once the server has started, we’ll need to find the external URL for the server to access the Jupyter Lab instance.</p>
+<div class="section" id="job-details">
+<h3>Job Details<a class="headerlink" href="#job-details" title="Permalink to this headline">¶</a></h3>
+<p>First, we’ll need the <cite>Job ID</cite>, which can be found in the left side of the overview tab. This ID is a unique identifier for the job you have created.</p>
+<img alt="Job Info" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_job_info.png" />
+</div>
+<div class="section" id="finding-the-external-url">
+<h3>Finding the External URL<a class="headerlink" href="#finding-the-external-url" title="Permalink to this headline">¶</a></h3>
+<p>After copying the Job ID, open a command line that has access to the NGC CLI, which you should have previously set up. You’ll then use the <cite>ngc batch info &lt;jobID&gt;</cite> command to get information about your running container.</p>
+<p>Under the “Job Container Information” section, you’ll find a Docker Image URL -&gt; Container Port mapping that shows a unique URL. Copy this URL and paste it into a browser.</p>
+<img alt="Jupyter Login" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_jupyter_login.png" />
+</div>
+</div>
+<div class="section" id="getting-the-jupyter-lab-token">
+<h2>Getting the Jupyter Lab Token<a class="headerlink" href="#getting-the-jupyter-lab-token" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have access to the Jupyter Lab instance, you’ll need the Jupyter Lab token to access your notebooks.</p>
+<p>From the page with the job information about your instance, click on the “Results” tab. Here, you should see a file called <cite>joblog.log</cite>. Click on this file to see the startup output for the MONAI Toolkit container. You’ll find the token at the end of the Jupyter Lab start output. Copy everything after the <cite>token=&lt;token&gt;</cite> output. You’ll input this in the login screen of Jupyter Lab from the previous step.</p>
+<img alt="MONAI Toolkit Log with token" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_job_start_log.png" />
+</div>
+<div class="section" id="monai-toolkit-landing-page">
+<h2>MONAI Toolkit Landing Page<a class="headerlink" href="#monai-toolkit-landing-page" title="Permalink to this headline">¶</a></h2>
+<p>You’ve now launched the MONAI Toolkit container and successfully logged into the Jupyter Lab instance. You should now be greeted with the MONAI Toolkit Landing page.</p>
+<img alt="MONAI Toolkit Landing Page" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_jupyter_landing_page.png" />
+<p>You can now begin your journey with the MONAI Toolkit and the guided experience within the Jupyter Lab instance.</p>
+</div>
+<div class="section" id="closing-the-toolkit-instance">
+<h2>Closing the Toolkit Instance<a class="headerlink" href="#closing-the-toolkit-instance" title="Permalink to this headline">¶</a></h2>
+<p>When you’re done using the MONAI Toolkit instance, it’s important to remember to close the instance to free up resources. Here’s how you can do this:</p>
+<ol class="arabic simple">
+<li>Go back to the BCP dashboard and navigate to the Jobs tab.</li>
+<li>Locate the job corresponding to your instance in the job list.</li>
+<li>Click on the “…” button on the right side of the job entry and find “Kill Job”. This will terminate the job and release the resources it was using.</li>
+</ol>
+<img alt="Job Kill" src="https://developer.download.nvidia.com/assets/Clara/Images/monai_toolkit_job_kill.png" />
+</div>
+<div class="section" id="q-a">
+<h2>Q&amp;A<a class="headerlink" href="#q-a" title="Permalink to this headline">¶</a></h2>
+<p>Remember, the NVIDIA support team is always there to help you with any issues or questions you might have while using the NVIDIA Base Command Platform and MONAI Toolkit.</p>
+<p><strong>Q: Can I use Multi Node instances with the MONAI Toolkit?</strong></p>
+<p>A: Yes, you can! The process is largely the same as what we’ve outlined in this guide, but instead of choosing “Single Node” during setup, you’d select “Multi Node”. This can be particularly useful when running more demanding workloads, like Auto3DSeg or Self-Supervised Learning.</p>
+<p><strong>Q: How can I open additional ports if I need to?</strong></p>
+<p>A: Just as you exposed port 8888 for Jupyter Lab during setup, you can expose any additional ports you need in the same way. Just add them to the list of exposed ports during setup.</p>
+<p><strong>Q: How do I upload my own data to use with the MONAI Toolkit?</strong></p>
+<p>A: You can upload your own datasets to NGC.  To find additional information, read the “Managing Datasets” section on the Base Command Platform User Guide: <a class="reference external" href="https://docs.nvidia.com/base-command-platform/user-guide/index.html#managing-datasets">https://docs.nvidia.com/base-command-platform/user-guide/index.html#managing-datasets</a>.</p>
+<p><strong>Q: What should I do if my job is stuck in the “Queued” status?</strong></p>
+<p>A: Jobs can remain in the “Queued” status if there are insufficient resources available or if there are higher-priority jobs in the queue. If your job remains in this status for an extended period of time, consider contacting your administrator or support for assistance.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MONAI Toolkit Documentation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supportmatrix.html">Toolkit Support Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="navigating.html">Toolkit Navigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance Benchmarks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MONAI Toolkit on NVIDIA Base Command Platform (BCP)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-your-ngc-cli">Setting Up Your NGC CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launching-an-interactive-job-with-jupyter-lab">Launching an Interactive Job with Jupyter Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-job-to-start-a-server-using-monai-toolkit-quickstart">Creating a Job to Start a Server Using MONAI Toolkit - Quickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#logging-into-ngc">Logging into NGC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-the-jobs-submenu">Accessing the Jobs Submenu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-new-job">Creating a New Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-node-type-and-ace">Setting Node Type and ACE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#choosing-compute-resources">Choosing Compute Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-datasets">Selecting Datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-results-mountpoint">Setting Results Mountpoint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#choosing-the-container-and-exposing-ports">Choosing the Container and Exposing Ports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-job-priority-and-order">Setting Job Priority and Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#naming-your-job">Naming Your Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launching-your-job">Launching Your Job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#job-overview">Job Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-the-external-url-for-jupyter-lab">Accessing the External URL for Jupyter Lab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#job-details">Job Details</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#finding-the-external-url">Finding the External URL</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-the-jupyter-lab-token">Getting the Jupyter Lab Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#monai-toolkit-landing-page">MONAI Toolkit Landing Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#closing-the-toolkit-instance">Closing the Toolkit Instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#q-a">Q&amp;A</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="additionalresources.html">Additional Resources</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="performance.html" title="previous chapter">Performance Benchmarks</a></li>
+      <li>Next: <a href="additionalresources.html" title="next chapter">Additional Resources</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Michael Zephyr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/bcp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

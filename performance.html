@@ -1,0 +1,267 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Performance Benchmarks &#8212; MONAI Toolkit Documentation 1.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MONAI Toolkit on NVIDIA Base Command Platform (BCP)" href="bcp.html" />
+    <link rel="prev" title="Toolkit Navigation" href="navigating.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="performance-benchmarks">
+<h1>Performance Benchmarks<a class="headerlink" href="#performance-benchmarks" title="Permalink to this headline">¶</a></h1>
+<p>We provide comprehensive benchmarks of various machine learning algorithms, examining their performance across a variety of configurations. These benchmarks aim to provide insights into the model training time, GPU utilization rate, memory usage, and training time over a certain number of epochs. The two main workflows considered in these benchmarks are Auto3DSeg and Self-Supervised Learning. The evaluations involve varying GPU counts and types, with a focus on the 80GB A100 GPU. The benchmarks provided in this document can guide developers and researchers in selecting the best configuration for their specific needs and constraints.</p>
+<div class="section" id="benchmark-1-dints-segresnet-3d-and-swinunetr-algorithms">
+<h2>Benchmark 1: DiNTS, SegResNet (3D), and SwinUNETR Algorithms<a class="headerlink" href="#benchmark-1-dints-segresnet-3d-and-swinunetr-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>The subsequent section presents the benchmarking outcomes of the Auto3DSeg algorithms concerning computational efficiency. Dataset TotalSegmentator has been selected for demonstration purposes, as it is among the largest publicly available 3D medical image datasets, containing over 1,000 CT images and their corresponding 104 foreground classes of segmentation annotations. This dataset features substantial variations in field-of-view and organ/bone shapes.</p>
+<p>To ensure equitable comparisons, we adhere to the original methodology employed in TotalSegmentator, dividing the 104 foreground classes into five segments and utilizing one segment, comprised of 17 foreground classes, for model training source. We have provided numerical results for each fold in a 5-fold cross-validation of three algorithms: DiNTS, 3D SegResNet, and SwinUNETR. It is important to note that, for this particular dataset, 2D SegResNet is not employed in the model training process due to the data spacing distribution and the internal algorithm selection logic we utilize. The GPU utilization and memory usage are assessed utilizing the widely recognized DCGM library.</p>
+<p>The following table provides a comparison of the three algorithms when used with an 80GB A100 GPU and varying GPU counts ranging from 1 to 32:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="13%" />
+<col width="14%" />
+<col width="32%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Algorithm</th>
+<th class="head">GPU</th>
+<th class="head">No. of GPU</th>
+<th class="head">Model Training Time (Hrs)</th>
+<th class="head">GPU Utilization %</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>DiNTS</td>
+<td>80GB A100</td>
+<td>1</td>
+<td>19.0</td>
+<td>92%</td>
+</tr>
+<tr class="row-odd"><td>DiNTS</td>
+<td>80GB A100</td>
+<td>8</td>
+<td>2.5</td>
+<td>92%</td>
+</tr>
+<tr class="row-even"><td>DiNTS</td>
+<td>80GB A100</td>
+<td>16</td>
+<td>1.5</td>
+<td>89%</td>
+</tr>
+<tr class="row-odd"><td>DiNTS</td>
+<td>80GB A100</td>
+<td>32</td>
+<td>0.9</td>
+<td>84%</td>
+</tr>
+<tr class="row-even"><td>SegResNet (3D)</td>
+<td>80GB A100</td>
+<td>1</td>
+<td>13.8</td>
+<td>92%</td>
+</tr>
+<tr class="row-odd"><td>SegResNet (3D)</td>
+<td>80GB A100</td>
+<td>8</td>
+<td>2.8</td>
+<td>91%</td>
+</tr>
+<tr class="row-even"><td>SegResNet (3D)</td>
+<td>80GB A100</td>
+<td>16</td>
+<td>1.5</td>
+<td>89%</td>
+</tr>
+<tr class="row-odd"><td>SegResNet (3D)</td>
+<td>80GB A100</td>
+<td>32</td>
+<td>0.8</td>
+<td>88%</td>
+</tr>
+<tr class="row-even"><td>SwinUNETR</td>
+<td>80GB A100</td>
+<td>1</td>
+<td>15.6</td>
+<td>95%</td>
+</tr>
+<tr class="row-odd"><td>SwinUNETR</td>
+<td>80GB A100</td>
+<td>8</td>
+<td>2.2</td>
+<td>94%</td>
+</tr>
+<tr class="row-even"><td>SwinUNETR</td>
+<td>80GB A100</td>
+<td>16</td>
+<td>1.0</td>
+<td>93%</td>
+</tr>
+<tr class="row-odd"><td>SwinUNETR</td>
+<td>80GB A100</td>
+<td>32</td>
+<td>0.6</td>
+<td>91%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="benchmark-2-ssl-algorithm">
+<h2>Benchmark 2: SSL Algorithm<a class="headerlink" href="#benchmark-2-ssl-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>The following table illustrates the performance of the SSL (Semi-Supervised Learning) Algorithm when used with approximately 35,000 3D volumes of training data and varying GPU counts. The testing was conducted using the 80GB A100 GPU model.</p>
+<p>The table presents key performance metrics for each configuration, including the Model Training Time for 200 epochs, Per GPU Memory Used, and GPU Utilization. These metrics provide insights into the algorithm’s efficiency and resource utilization during the training process.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="12%" />
+<col width="27%" />
+<col width="21%" />
+<col width="17%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Algorithm</th>
+<th class="head">GPU</th>
+<th class="head">No. of GPU</th>
+<th class="head">Model Training Time (Hrs)</th>
+<th class="head">Per GPU Memory Used</th>
+<th class="head">GPU Utilization</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SSL</td>
+<td>80GB A100</td>
+<td>4</td>
+<td>316</td>
+<td>~72GB</td>
+<td>77%</td>
+</tr>
+<tr class="row-odd"><td>SSL</td>
+<td>80GB A100</td>
+<td>8</td>
+<td>154</td>
+<td>~73GB</td>
+<td>86%</td>
+</tr>
+<tr class="row-even"><td>SSL</td>
+<td>80GB A100</td>
+<td>16</td>
+<td>82</td>
+<td>~71GB</td>
+<td>90%</td>
+</tr>
+<tr class="row-odd"><td>SSL</td>
+<td>80GB A100</td>
+<td>32</td>
+<td>54</td>
+<td>~72GB</td>
+<td>89%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="benchmark-3-generative-ai">
+<h2>Benchmark 3: Generative AI<a class="headerlink" href="#benchmark-3-generative-ai" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MONAI Toolkit Documentation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supportmatrix.html">Toolkit Support Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="navigating.html">Toolkit Navigation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Performance Benchmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-1-dints-segresnet-3d-and-swinunetr-algorithms">Benchmark 1: DiNTS, SegResNet (3D), and SwinUNETR Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-2-ssl-algorithm">Benchmark 2: SSL Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benchmark-3-generative-ai">Benchmark 3: Generative AI</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bcp.html">MONAI Toolkit on NVIDIA Base Command Platform (BCP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additionalresources.html">Additional Resources</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="navigating.html" title="previous chapter">Toolkit Navigation</a></li>
+      <li>Next: <a href="bcp.html" title="next chapter">MONAI Toolkit on NVIDIA Base Command Platform (BCP)</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Michael Zephyr.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/performance.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
